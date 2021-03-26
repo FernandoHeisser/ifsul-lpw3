@@ -6,15 +6,9 @@
         <title>LPW3</title>
     </head>
     <body>
-    <h1>LPW3</h1>
         <?php
-            include_once("connection.php");
+            include_once("connection/connection.php");
             include_once("models/User.php");
-            $user = new User();
-            $user->setUsername( "NanandoFixa" );
-            $user->setPassword( "12345678" );
-            $user->setCon($con);
-            $user->login();
         ?>
     </body>
 </html>
