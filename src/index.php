@@ -8,7 +8,7 @@
     <body>
         <?php
             include_once("connection/connection.php");
-            include_once("models/User.php");
+            include_once("models/User.class.php");
         ?>
     </body>
 </html>
