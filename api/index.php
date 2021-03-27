@@ -7,10 +7,11 @@
     </head>
     <body>
         <?php
-            include_once("database/connection/connection.php");
-            include_once("models/User.class.php");
+            include_once("repositories/UserRepository.class.php");
 
-            
+            $userRepository = new UserRepository();
+
+            echo($userRepository->getUsers());
         ?>
     </body>
 </html>

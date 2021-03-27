@@ -1,10 +1,6 @@
---SHOW DATABASES;
+CREATE DATABASE LPW3;
 
---CREATE DATABASE LPW3;
-
---USE LPW3;
-
---SHOW TABLES;
+USE LPW3;
 
 DROP TABLE IF EXISTS carpool_match;
 DROP TABLE IF EXISTS carpools_offered;
@@ -25,10 +21,10 @@ CREATE TABLE IF NOT EXISTS users (
 	instagram  VARCHAR(255) NULL,
 	twitter VARCHAR(255) NULL,
 	photo VARCHAR(255) NULL,
-	carpool_done INT NULL,
-	carpool_canceled INT NULL,
-	carpool_offered INT NULL,
-	carpool_requested INT NULL
+	carpool_done INT NOT NULL DEFAULT 0,
+	carpool_canceled INT NOT NULL DEFAULT 0,
+	carpool_offered INT NOT NULL DEFAULT 0,
+	carpool_requested INT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS carpools_requested (
@@ -70,3 +66,37 @@ CREATE TABLE IF NOT EXISTS carpool_match (
 	FOREIGN KEY fk_carpool_match_carpools_requested (carpool_request_id) REFERENCES carpools_requested (id),
 	FOREIGN KEY fk_carpool_match_carpools_offered (carpool_offer_id) REFERENCES carpools_offered (id)
 );
+
+INSERT INTO users(
+email,
+name,
+cpf,
+password,
+phone,
+city,
+neighborhood,
+street,
+facebook,
+instagram,
+twitter)
+VALUES (
+'fernando.heisserch@gmail.com',
+'Fernando Costa Heisser',
+'04310299032',
+'123',
+'51995258425',
+'Charqueadas',
+'Centro',
+'Patricio Ferreira',
+'facebook.com/fernando.heisser/',
+'instagram.com/fernando_heisser/',
+'https://twitter.com/fernandoheisser');
+
+SELECT * FROM users;
+
+SELECT * FROM carpools_requested;
+
+SELECT * FROM carpools_offered;
+
+SELECT * FROM carpool_match;
+
