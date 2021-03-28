@@ -3,7 +3,7 @@
         private $host = "localhost";
         private $db_name = "LPW3";
         private $username = "fernando";
-        private $password = "papaiNOEL123*";
+        private $password = "123";
         public $conn;
     
         public function getConnection(){
