@@ -11,7 +11,9 @@
             $this->conn = $database->getConnection();
         }
 
-        public function create(User $user){
+        public function createUser(User $user){
+            print_r($user);
+            
             $query = "INSERT INTO {$this->tableName} (
                 email,
                 name,
@@ -37,20 +39,68 @@
                 {$user->getInstagram()},
                 {$user->getTwitter()})";
     
-            $stmt = $this->conn->prepare($query);
+            //$stmt = $this->conn->prepare($query);
     
-            $stmt->execute();
+            //$stmt->execute();
     
-            return $stmt;
+            //return $stmt;
         }
         
         public function getUsers(){
-            $query = "SELECT * FROM {$this->tableName}";
+            $query = 
+                "SELECT 
+                id,
+                email,
+                name,
+                cpf,
+                password,
+                phone,
+                city,
+                neighborhood,
+                street,
+                facebook,
+                instagram,
+                twitter,
+                photo,
+                carpool_done,
+                carpool_canceled,
+                carpool_offered,
+                carpool_requested
+                FROM {$this->tableName}";
 
             $statement = $this->conn->prepare($query);
             $statement->execute();
 
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return json_encode($results);
+        }
+
+        public function getUserById($id){
+            $query = "SELECT 
+                id,
+                email,
+                name,
+                cpf,
+                password,
+                phone,
+                city,
+                neighborhood,
+                street,
+                facebook,
+                instagram,
+                twitter,
+                photo,
+                carpool_done,
+                carpool_canceled,
+                carpool_offered,
+                carpool_requested
+                FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
+
+            $statement = $this->conn->prepare($query);
+            $statement->execute();
+
+            $results = $statement->fetch(PDO::FETCH_ASSOC);
 
             return json_encode($results);
         }

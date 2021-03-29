@@ -8,10 +8,20 @@
     <body>
         <?php
             include_once("repositories/UserRepository.class.php");
+            include_once("models/User.class.php");
 
             $userRepository = new UserRepository();
 
-            echo($userRepository->getUsers());
+            $user = new User(
+                "nanandofixa@gmail.com",
+                "Nanando Fixa",
+                "04310299032",
+                "123",
+                "51995258425"
+            );
+            $userRepository->createUser($user);
+
+            //echo($userRepository->getUsers());
         ?>
     </body>
 </html>
