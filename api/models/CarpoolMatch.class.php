@@ -5,8 +5,7 @@
 	    private $carpoolOfferId;
 	    private $accepted;
 
-        function __construct($id, $carpoolRequestId, $carpoolOfferId) {
-            $this->id = $id;
+        function __construct($carpoolRequestId, $carpoolOfferId) {
             $this->carpoolRequestId = $carpoolRequestId;
             $this->carpoolOfferId = $carpoolOfferId;
         }
