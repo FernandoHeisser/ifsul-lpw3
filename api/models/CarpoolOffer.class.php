@@ -9,9 +9,9 @@
         private $toCity;
         private $toNeighborhood;
         private $toStreet;
+        private $availableVacancies;
         private $done = false;
         private $canceled = false;
-        private $availableVacancies;
 
         function __construct($userId, $phone, $fromCity, $fromNeighborhood, $fromStreet, $toCity, $toNeighborhood, $toStreet, $availableVacancies) {
             $this->userId = $userId;

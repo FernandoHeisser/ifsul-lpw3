@@ -3,7 +3,7 @@
         private $id;
 	    private $carpoolRequestId;
 	    private $carpoolOfferId;
-	    private $accepted;
+	    private $accepted = false;
 
         function __construct($carpoolRequestId, $carpoolOfferId) {
             $this->carpoolRequestId = $carpoolRequestId;
