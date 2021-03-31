@@ -13,7 +13,7 @@
         public function getId() {
             return $this->id;
         }
-        public function getCarpoolRequest() {
+        public function getCarpoolRequestId() {
             return $this->carpoolRequestId;
         }
         public function getCarpoolOfferId() {

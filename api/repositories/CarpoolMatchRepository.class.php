@@ -9,6 +9,28 @@
             $this->conn = $database->getConnection();
         }
 
+        public function createCarpoolMatch(CarpoolMatch $carpoolMatch){
+            try { 
+                $query = "INSERT INTO {$this->tableName} (
+                    carpool_request_id,
+                    carpool_offer_id,
+                    accepted)
+                    VALUES ( 
+                    {$carpoolMatch->getCarpoolRequestId()},
+                    {$carpoolMatch->getCarpoolOfferId()},
+                    0)";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return $this->conn->lastInsertId();
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
+
         public function getCarpoolMatchsById($id){
             try {
                 $query = "SELECT

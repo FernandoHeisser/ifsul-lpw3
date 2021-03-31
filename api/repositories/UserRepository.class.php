@@ -45,13 +45,12 @@
                     {$instagram},
                     {$twitter})";
 
-                //echo($query);
 
                 $stmt = $this->conn->prepare($query);
 
                 $stmt->execute();
 
-                return $stmt;
+                return $this->conn->lastInsertId();
 
             } catch (Exception $e) {
                 echo "Exception: {$e->getMessage()}";
@@ -118,9 +117,9 @@
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $results = $statement->fetch(PDO::FETCH_ASSOC);
+                $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-                return json_encode($results);
+                return json_encode($result);
                 
             } catch (Exception $e) {
                 echo "Exception: {$e->getMessage()}";
