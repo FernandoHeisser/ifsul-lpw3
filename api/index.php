@@ -26,8 +26,8 @@
             $user1->setCity('Charqueadas');
             $user1->setNeighborhood('Centro');
             $user1->setStreet('Patricio Ferreira');
-            $user1->setFacebook('facebook.com/fernando.heisser/');
-            $user1->setInstagram('instagram.com/fernando_heisser/');
+            $user1->setFacebook('https://facebook.com/fernando.heisser/');
+            $user1->setInstagram('https://instagram.com/fernando_heisser/');
             $user1->setTwitter('https://twitter.com/fernandoheisser');
             
             $user2 = new User(
