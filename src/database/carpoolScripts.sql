@@ -1,4 +1,10 @@
+CREATE USER 'fernando'@'localhost' IDENTIFIED BY '123';
+
+GRANT ALL PRIVILEGES ON *.* TO 'fernando'@'localhost';
+
 SHOW DATABASES;
+
+CREATE DATABASE LPW3;
 
 USE LPW3;
 
