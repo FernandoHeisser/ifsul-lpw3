@@ -1,7 +1,7 @@
 <?php
     class DatabaseConnection{
         private $host = "localhost";
-        private $db_name = "LPW3";
+        private $db_name = "carpool";
         private $username = "fernando";
         private $password = "123";
         public $conn;
