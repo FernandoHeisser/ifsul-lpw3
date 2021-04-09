@@ -3,13 +3,13 @@
         private $conn;
         private $tableName = "carpool_match";
 
-        public function __construct(){
+        public function __construct() {
             $database = new DatabaseConnection();
             
             $this->conn = $database->getConnection();
         }
 
-        public function createCarpoolMatch(CarpoolMatch $carpoolMatch){
+        public function createCarpoolMatch(CarpoolMatch $carpoolMatch) {
             try { 
                 $query = "INSERT INTO {$this->tableName} (
                     carpool_request_id,
@@ -31,63 +31,64 @@
             }
         }
 
-        public function getCarpoolMatchsById($id){
+        public function getCarpoolMatchById($id) {
             try {
-                $query = "SELECT
-                id,
-                carpool_request_id,
-                carpool_offer_id,
-                accepted
-                FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
+                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $results = $statement->fetch(PDO::FETCH_ASSOC);
+                $carpoolMatch = $statement->fetch(PDO::FETCH_ASSOC);
 
-                return json_encode($results);
+                return json_encode($carpoolMatch);
 
             } catch(Exception $e) {
                 echo "Exception: {$e->getMessage()}";
             }
         }
 
-        public function getCarpoolMatchsByCarpoolRequestId($carpoolRequestId){
+        public function getCarpoolMatchsByCarpoolRequestId($carpoolRequestId) {
             try {
-                $query = "SELECT
-                id,
-                carpool_request_id,
-                carpool_offer_id,
-                accepted
-                FROM {$this->tableName} WHERE carpool_request_id = {$carpoolRequestId}";
+                $query = "SELECT * FROM {$this->tableName} WHERE carpool_request_id = {$carpoolRequestId}";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $carpoolMatchs = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                return json_encode($results);
+                return json_encode($carpoolMatchs);
 
             } catch(Exception $e) {
                 echo "Exception: {$e->getMessage()}";
             }
         }
 
-        public function getCarpoolMatchsByCarpoolOfferId($carpoolOfferId){
+        public function getCarpoolMatchsByCarpoolOfferId($carpoolOfferId) {
             try {
-                $query = "SELECT
-                id,
-                carpool_request_id,
-                carpool_offer_id,
-                accepted
-                FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId}";
+                $query = "SELECT * FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId}";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $carpoolMatchs = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                return json_encode($results);
+                return json_encode($carpoolMatchs);
+
+            } catch(Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
+
+        public function getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($carpoolOfferId, $carpoolRequestId) {
+            try {
+                $query = "SELECT * FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId} AND carpool_request_id = {$carpoolRequestId}";
+
+                $statement = $this->conn->prepare($query);
+                $statement->execute();
+
+                $carpoolMatchs = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+                return json_encode($carpoolMatchs);
 
             } catch(Exception $e) {
                 echo "Exception: {$e->getMessage()}";

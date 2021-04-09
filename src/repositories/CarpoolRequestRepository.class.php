@@ -3,13 +3,13 @@
         private $conn;
         private $tableName = "carpools_requested";
 
-        public function __construct(){
+        public function __construct() {
             $database = new DatabaseConnection();
             
             $this->conn = $database->getConnection();
         }
 
-        public function createCarpoolRequest(CarpoolRequest $carpoolRequest){
+        public function createCarpoolRequest(CarpoolRequest $carpoolRequest) {
             try { 
                 $query = "INSERT INTO {$this->tableName} (
                     user_id,
@@ -49,84 +49,64 @@
             }
         }
 
-        public function getCarpoolRequests(){
+        public function getCarpoolRequests() {
             try {
-                $query = "SELECT
-                id,
-                user_id,
-                phone,
-                from_city,
-                from_neighborhood,
-                from_street,
-                to_city,
-                to_neighborhood,
-                to_street,
-                canceled,
-                done
-                FROM {$this->tableName}";
+                $query = "SELECT * FROM {$this->tableName} ORDER BY start_date";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $carpoolRequests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                return json_encode($results);
+                return json_encode($carpoolRequests);
 
             } catch(Exception $e) {
                 echo "Exception: {$e->getMessage()}";
             }
         }
 
-        public function getCarpoolRequestById($id){
+        public function getCarpoolRequestById($id) {
             try {
-                $query = "SELECT
-                id,
-                user_id,
-                phone,
-                from_city,
-                from_neighborhood,
-                from_street,
-                to_city,
-                to_neighborhood,
-                to_street,
-                canceled,
-                done
-                FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
+                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
+                $carpoolRequest = $statement->fetch(PDO::FETCH_ASSOC);
 
-                return json_encode($result);
+                return json_encode($carpoolRequest);
 
             } catch (Exception $e) {
                 echo "Exception: {$e->getMessage()}";
             }
         }
 
-        public function getCarpoolRequestByUserId($userId){
+        public function getCarpoolRequestByUserId($userId) {
             try {
-                $query = "SELECT
-                id,
-                user_id,
-                phone,
-                from_city,
-                from_neighborhood,
-                from_street,
-                to_city,
-                to_neighborhood,
-                to_street,
-                canceled,
-                done
-                FROM {$this->tableName} WHERE user_id = {$userId} LIMIT 1";
+                $query = "SELECT * FROM {$this->tableName} WHERE user_id = {$userId} ORDER BY start_date";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
+                $carpoolRequests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                return json_encode($result);
+                return json_encode($carpoolRequests);
+                
+            } catch(Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
+
+        public function getCarpoolRequestFromOtherUsers($userId){
+            try {
+                $query = "SELECT * FROM {$this->tableName} WHERE user_id != {$userId} ORDER BY start_date";
+
+                $statement = $this->conn->prepare($query);
+                $statement->execute();
+
+                $carpoolRequests = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+                return json_encode($carpoolRequests);
                 
             } catch(Exception $e) {
                 echo "Exception: {$e->getMessage()}";

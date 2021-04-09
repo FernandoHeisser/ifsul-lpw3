@@ -5,20 +5,20 @@
         private $conn;
         private $tableName = "users";
 
-        public function __construct(){
+        public function __construct() {
             $database = new DatabaseConnection();
             
             $this->conn = $database->getConnection();
         }
 
-        public function createUser(User $user){
+        public function createUser(User $user) {
             try {
-                $city = !empty($user->getCity())? "'{$user->getCity()}'" : "NULL";
-                $neighborhood = !empty($user->getNeighborhood())? "'{$user->getNeighborhood()}'"  : "NULL";
-                $street = !empty($user->getStreet())? "'{$user->getStreet()}'"  : "NULL";
-                $facebook = !empty($user->getFacebook())? "'{$user->getFacebook()}'"  : "NULL";
-                $instagram = !empty($user->getInstagram())? "'{$user->getInstagram()}'"  : "NULL";
-                $twitter = !empty($user->getTwitter())? "'{$user->getTwitter()}'"  : "NULL";
+                $city =         !empty($user->getCity())        ? "'{$user->getCity()}'"            : "NULL";
+                $neighborhood = !empty($user->getNeighborhood())? "'{$user->getNeighborhood()}'"    : "NULL";
+                $street =       !empty($user->getStreet())      ? "'{$user->getStreet()}'"          : "NULL";
+                $facebook =     !empty($user->getFacebook())    ? "'{$user->getFacebook()}'"        : "NULL";
+                $instagram =    !empty($user->getInstagram())   ? "'{$user->getInstagram()}'"       : "NULL";
+                $twitter =      !empty($user->getTwitter())     ? "'{$user->getTwitter()}'"         : "NULL";
                 
                 $query = "INSERT INTO {$this->tableName} (
                     email,
@@ -57,69 +57,33 @@
             }
         }
         
-        public function getUsers(){
+        public function getUsers() {
             try {
                 $query = 
-                    "SELECT 
-                    id,
-                    email,
-                    name,
-                    cpf,
-                    password,
-                    phone,
-                    city,
-                    neighborhood,
-                    street,
-                    facebook,
-                    instagram,
-                    twitter,
-                    photo,
-                    carpool_done,
-                    carpool_canceled,
-                    carpool_offered,
-                    carpool_requested
-                    FROM {$this->tableName}";
+                    "SELECT * FROM {$this->tableName}";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                return json_encode($results);
+                return json_encode($users);
 
             } catch (Exception $e) {
                 echo "Exception: {$e->getMessage()}";
             }
         }
 
-        public function getUserById($id){
+        public function getUserById($id) {
             try {
-                $query = "SELECT 
-                    id,
-                    email,
-                    name,
-                    cpf,
-                    password,
-                    phone,
-                    city,
-                    neighborhood,
-                    street,
-                    facebook,
-                    instagram,
-                    twitter,
-                    photo,
-                    carpool_done,
-                    carpool_canceled,
-                    carpool_offered,
-                    carpool_requested
-                    FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
+                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
 
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
+                $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-                return json_encode($result);
+                return json_encode($user);
                 
             } catch (Exception $e) {
                 echo "Exception: {$e->getMessage()}";
