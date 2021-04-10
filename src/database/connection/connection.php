@@ -1,7 +1,7 @@
 <?php
     class DatabaseConnection{
         private $host = "localhost";
-        private $db_name = "carpool";
+        private $dbName = "carpool";
         private $username = "fernando";
         private $password = "123";
         public $conn;
@@ -10,7 +10,7 @@
             $this->conn = null;
     
             try{
-                $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+                $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbName, $this->username, $this->password);
                 $this->conn->exec("set names utf8");
 
             } catch(PDOException $exception){
