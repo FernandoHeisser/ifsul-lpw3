@@ -14,23 +14,22 @@
             
             $userRepository = new UserRepository();
             #echo($userRepository->getUsers());
-            #echo($userRepository->getUserById(1));
             #echo($userRepository->getUserById(2));
 
             $carpoolRequestRepository = new CarpoolRequestRepository();
             #echo($carpoolRequestRepository->getCarpoolRequests());
             #echo($carpoolRequestRepository->getCarpoolRequestById(1));
-            #echo($carpoolRequestRepository->getCarpoolRequestByUserId(1));
-            #echo($carpoolRequestRepository->getCarpoolRequestFromOtherUsers(1));
+            #echo($carpoolRequestRepository->getCarpoolRequestByUserId(2));
+            #echo($carpoolRequestRepository->getCarpoolRequestFromOtherUsers(2));
 
             $carpoolOfferRepository = new CarpoolOfferRepository();
             #echo($carpoolOfferRepository->getCarpoolOffers());
-            #echo($carpoollOfferRepository->getCarpoolOfferById(1));
-            #echo($carpoollOfferRepository->getCarpoolOfferByUserId(1));
-            #echo($carpoollOfferRepository->getCarpoolOfferFromOtherUsers(1));
+            #echo($carpoolOfferRepository->getCarpoolOfferById(4));
+            #echo($carpoolOfferRepository->getCarpoolOffersByUserId(1));
+            #echo($carpoolOfferRepository->getCarpoolOffersFromOtherUsers(1));
 
             $carpoolMatchRepository = new CarpoolMatchRepository();
-            #echo($carpoolMatchRepository->getCarpoolMatchById(1));
+            #echo($carpoolMatchRepository->getCarpoolMatchById(5));
             #echo($carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferId(1));
             #echo($carpoolMatchRepository->getCarpoolMatchsByCarpoolRequestId(1));
             #echo($carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(1, 1));

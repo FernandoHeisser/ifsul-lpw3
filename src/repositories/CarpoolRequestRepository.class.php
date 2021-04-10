@@ -51,7 +51,7 @@
 
         public function getCarpoolRequests() {
             try {
-                $query = "SELECT * FROM {$this->tableName} ORDER BY start_date";
+                $query = "SELECT * FROM {$this->tableName} WHERE start_date > NOW() AND canceled = 0 ORDER BY start_date";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
@@ -67,7 +67,7 @@
 
         public function getCarpoolRequestById($id) {
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
+                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} AND canceled = 0 LIMIT 1";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
@@ -83,7 +83,7 @@
 
         public function getCarpoolRequestByUserId($userId) {
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE user_id = {$userId} ORDER BY start_date";
+                $query = "SELECT * FROM {$this->tableName} WHERE user_id = {$userId} AND start_date > NOW() AND canceled = 0 ORDER BY start_date";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
@@ -99,7 +99,7 @@
 
         public function getCarpoolRequestFromOtherUsers($userId){
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE user_id != {$userId} ORDER BY start_date";
+                $query = "SELECT * FROM {$this->tableName} WHERE user_id != {$userId} AND start_date > NOW() AND canceled = 0 ORDER BY start_date";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();

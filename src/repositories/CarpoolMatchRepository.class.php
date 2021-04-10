@@ -14,10 +14,12 @@
                 $query = "INSERT INTO {$this->tableName} (
                     carpool_request_id,
                     carpool_offer_id,
-                    accepted)
+                    accepted,
+                    canceled)
                     VALUES ( 
                     {$carpoolMatch->getCarpoolRequestId()},
                     {$carpoolMatch->getCarpoolOfferId()},
+                    0,
                     0)";
 
                 $stmt = $this->conn->prepare($query);

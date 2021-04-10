@@ -1,19 +1,15 @@
-CREATE USER 'fernando'@'localhost' IDENTIFIED BY '123';
+-- CREATE USER 'fernando'@'localhost' IDENTIFIED BY '123';
 
-GRANT ALL PRIVILEGES ON *.* TO 'fernando'@'localhost';
+-- GRANT ALL PRIVILEGES ON *.* TO 'fernando'@'localhost';
 
-SHOW DATABASES;
+-- SHOW DATABASES;
 
+DROP DATABASE IF EXISTS carpool;
 CREATE DATABASE IF NOT EXISTS carpool;
 
 USE carpool;
 
-SHOW TABLES;
-
-DROP TABLE IF EXISTS carpool_match;
-DROP TABLE IF EXISTS carpools_offered;
-DROP TABLE IF EXISTS carpools_requested;
-DROP TABLE IF EXISTS users;
+-- SHOW TABLES;
 
 CREATE TABLE IF NOT EXISTS users (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -75,25 +71,10 @@ CREATE TABLE IF NOT EXISTS carpool_match (
 	carpool_request_id INT NOT NULL,
 	carpool_offer_id INT NOT NULL,
 	accepted BOOLEAN NOT NULL DEFAULT 0,
+	canceled BOOLEAN NOT NULL DEFAULT 0,
 	FOREIGN KEY fk_carpool_match_carpools_requested (carpool_request_id) REFERENCES carpools_requested (id),
 	FOREIGN KEY fk_carpool_match_carpools_offered (carpool_offer_id) REFERENCES carpools_offered (id)
 );
-
-SELECT * FROM users;
-
-SELECT * FROM carpools_requested;
-
-SELECT * FROM carpools_offered;
-
-SELECT * FROM carpool_match;
-
-DELETE FROM users WHERE id = ;
-
-DELETE FROM carpools_requested WHERE id = ;
-
-DELETE FROM carpools_offered WHERE id = ;
-
-DELETE FROM carpool_match WHERE id = ;
 
 INSERT INTO users (email, name, cpf, password, phone, city, neighborhood, street, facebook, instagram, twitter, photo, carpool_done, carpool_canceled, carpool_offered, carpool_requested)
 VALUES 	( 'fernando@email.com', 'Fernando Heisser', '04310299032', 'password', '51995258425', 'city', 'neighborhood', 'street', 'facebook', 'instagram', 'twitter', 'photo', 0, 0, 0, 0);
@@ -102,22 +83,29 @@ INSERT INTO users (email, name, cpf, password, phone, city, neighborhood, street
 VALUES 	( 'nanando@email.com', 'Nanando Fixa', '14310299033', 'password', '55995258425', 'city', 'neighborhood', 'street', 'facebook', 'instagram', 'twitter', 'photo', 0, 0, 0, 0);
 
 INSERT INTO carpools_offered (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, available_vacancies, canceled, done)
-VALUES 	( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-31 10:15:00', '2021-03-31 10:30:00', 4, 0, 0),
-		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-29 10:15:00', '2021-03-29 10:30:00', 4, 0, 0),
-		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-10 10:15:00', '2021-04-10 10:30:00', 4, 0, 0),
-		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-15 10:15:00', '2021-04-15 10:30:00', 4, 0, 0),
-		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-12 10:15:00', '2021-04-12 10:30:00', 4, 0, 0);
+VALUES 	( 1, '12345678900', 'Charqueadas', 'Centro', 'Rua Santo Amaro', 'São Jêronimo', 'Acacia', 'Rua São João', '2021-05-31 10:15:00', '2021-05-31 10:30:00', 4, 0, 0),
+		( 1, '12345678900', 'ABC', 'ABC', 'ABC', 'DEF', 'DEF', 'DEF', '2021-03-29 10:15:00', '2021-03-29 10:30:00', 4, 0, 0),
+		( 2, '12345678900', 'Butia', 'Centro', 'Rua Parana', 'General Câmara', 'Cruz de Malta', 'Rua Jacinto Dores', '2021-05-10 10:15:00', '2021-05-10 10:30:00', 4, 0, 0),
+		( 2, '12345678900', 'XYZ', 'XYZ', 'XYZ', 'RST', 'RST', 'RST', '2021-04-01 10:15:00', '2021-04-01 10:30:00', 4, 0, 0);
 
 INSERT INTO carpools_requested (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, canceled, done)
-VALUES 	( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-31 10:15:00', '2021-03-31 10:30:00', 0, 0),
-		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-29 10:15:00', '2021-03-29 10:30:00', 0, 0),
-		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-10 10:15:00', '2021-04-10 10:30:00', 0, 0),
-		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-15 10:15:00', '2021-04-15 10:30:00', 0, 0),
-		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-12 10:15:00', '2021-04-12 10:30:00', 0, 0);
+VALUES 	( 1, '12345678900', 'Butia', 'Centro', 'Rua Lisboa', 'General Câmara', 'Cruz de Malta', 'Rua Flores da Cunha', '2021-05-10 10:15:00', '2021-05-10 10:30:00', 0, 0),
+		( 1, '12345678900', 'XYZ', 'XYZ', 'XYZ', 'RST', 'RST', 'RST', '2021-04-01 10:15:00', '2021-04-01 10:30:00', 0, 0),
+		( 2, '12345678900', 'ABC', 'ABC', 'ABC', 'DEF', 'DEF', 'DEF', '2021-03-29 10:15:00', '2021-03-29 10:30:00', 0, 0),
+		( 2, '12345678900', 'Charqueadas', 'Centro', 'Rua Theodoro da Fonseca', 'São Jêronimo', 'Acacia', 'Rua Philipinas', '2021-05-31 10:15:00', '2021-05-31 10:30:00', 0, 0);
         
-INSERT INTO carpool_match (carpool_request_id, carpool_offer_id, accepted)
-VALUES 	( 1, 1, 0),
-		( 2, 2, 0),
-		( 3, 3, 0),
-		( 4, 4, 0),
-		( 4, 5, 0);
+INSERT INTO carpool_match (carpool_request_id, carpool_offer_id, accepted, canceled)
+VALUES 	( 1, 3, 0, 0),
+		( 4, 1, 0, 0),
+		( 2, 4, 0, 0),
+		( 3, 2, 0, 0);
+        
+-- SELECT * FROM users;
+-- SELECT * FROM carpools_requested;
+-- SELECT * FROM carpools_offered;
+-- SELECT * FROM carpool_match;
+
+-- DELETE FROM users WHERE id = -1;
+-- DELETE FROM carpools_requested WHERE id = -1;
+-- DELETE FROM carpools_offered WHERE id = -1;
+-- DELETE FROM carpool_match WHERE id = -1;
