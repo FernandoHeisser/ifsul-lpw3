@@ -1,5 +1,5 @@
 <?php
-    class CarpoolMatch {
+    class CarpoolMatch implements ICarpoolMatch {
         private $id;
 	    private $carpoolRequestId;
 	    private $carpoolOfferId;

@@ -1,5 +1,5 @@
 <?php
-    class CarpoolOffer {
+    class CarpoolOffer implements ICarpoolOffer {
         private $id;
         private $userId;
         private $phone;

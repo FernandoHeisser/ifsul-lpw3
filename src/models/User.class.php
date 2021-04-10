@@ -1,5 +1,5 @@
 <?php
-    class User {
+    class User implements IUser {
         private $id;
         private $email;
         private $name;

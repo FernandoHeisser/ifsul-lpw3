@@ -1,5 +1,5 @@
 <?php
-    class CarpoolRequest {
+    class CarpoolRequest implements ICarpoolRequest {
         private $id;
         private $userId;
         private $phone;
