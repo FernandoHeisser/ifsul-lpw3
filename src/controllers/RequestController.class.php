@@ -25,7 +25,7 @@
                     self::$url .= array_shift($array);
                     self::$url .= '/';
 
-                    if($array[0] == 'user') {
+                    if(!empty($array) && $array[0] == 'user') {
 
                         self::$url .= array_shift($array);
                         self::$url .= '/';
@@ -49,7 +49,7 @@
                             }
                         }
 
-                    } elseif($array[0] == 'users') {
+                    } elseif(!empty($array) && $array[0] == 'users') {
 
                         self::$url .= array_shift($array);
                         self::$url .= '/';
@@ -63,7 +63,7 @@
                             self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
                         }
 
-                    } elseif($array[0] == 'carpool') {
+                    } elseif(!empty($array) && $array[0] == 'carpool') {
 
                         self::$url .= array_shift($array);
                         self::$url .= '/';
