@@ -3,16 +3,16 @@
 
     class UserController {
 
-        
-        private $userRepository;
+        private static $userRepository;
 
         public function __construct() {
             
-            $this->userRepository = new UserRepository();
+            self::$userRepository = new UserRepository();
             
         }
 
-        #echo($userRepository->getUsers());
-        #echo($userRepository->getUserById(2));
+        public static function getUsers() {
+            return self::$userRepository->getUsers();
+        }
     }
 ?>

@@ -1,17 +1,23 @@
 <?php
-    include_once("Router.class.php");
+    //include_once("Router.class.php");
     
-    if(!empty($_REQUEST['url'])) {
-        
-        $request_url = $_REQUEST['url'];
-        $request_body = file_get_contents('php://input');
+    
+    
+    include_once("controllers/UserController.class.php");
+    $userController = new UserController();
+    echo $userController->getUsers();
 
-        $router = new Router($request_url, $request_body);
+    // if(!empty($_REQUEST['url'])) {
 
-        echo $router::getResponse();
+    //     $request_url = $_REQUEST['url'];
+    //     $request_body = file_get_contents('php://input');
 
-    } else {
+    //     $router = new Router($request_url, $request_body);
 
-        echo json_encode(array('status'=>'400', 'message'=>'Bad Request'));
-    }
+    //     echo $router::getResponse();
+
+    // } else {
+
+    //     echo json_encode(array('status'=>'400', 'message'=>'Bad Request'));
+    // }
 ?>
