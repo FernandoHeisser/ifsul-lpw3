@@ -1,4 +1,6 @@
 <?php
+    include_once("interfaces/ICarpoolMatch.php");
+
     class CarpoolMatch implements ICarpoolMatch {
         private $id;
 	    private $carpoolRequestId;
