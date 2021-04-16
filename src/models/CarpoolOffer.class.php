@@ -1,4 +1,6 @@
 <?php
+    include_once("interfaces/ICarpoolOffer.php");
+
     class CarpoolOffer implements ICarpoolOffer {
         private $id;
         private $userId;

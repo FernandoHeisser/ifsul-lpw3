@@ -81,7 +81,7 @@
             }
         }
 
-        public function getCarpoolRequestByUserId($userId) {
+        public function getCarpoolRequestsByUserId($userId) {
             try {
                 $query = "SELECT * FROM {$this->tableName} WHERE user_id = {$userId} AND start_date > NOW() AND canceled = 0 ORDER BY start_date";
 
@@ -97,7 +97,7 @@
             }
         }
 
-        public function getCarpoolRequestFromOtherUsers($userId){
+        public function getCarpoolRequestsFromOtherUsers($userId){
             try {
                 $query = "SELECT * FROM {$this->tableName} WHERE user_id != {$userId} AND start_date > NOW() AND canceled = 0 ORDER BY start_date";
 

@@ -4,8 +4,7 @@
         private static $body;
         private static $url;
 
-        public function __construct($url, $body) {
-            
+        public function __construct($url, $body) {          
             self::$body = json_decode($body);
             self::isValidUrl($url);
         }

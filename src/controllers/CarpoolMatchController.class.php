@@ -3,17 +3,23 @@
 
     class CarpoolMatchController {
 
-        private $carpoolMatchRepository;
+        private static $carpoolMatchRepository;
 
         public function __construct() {
-            
-            $this->carpoolMatchRepository = new CarpoolMatchRepository();
-            
+            self::$carpoolMatchRepository = new CarpoolMatchRepository();
         }
 
-        #echo($carpoolMatchRepository->getCarpoolMatchById(5));
-        #echo($carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferId(1));
-        #echo($carpoolMatchRepository->getCarpoolMatchsByCarpoolRequestId(1));
-        #echo($carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(1, 1));
+        public static function getCarpoolMatchById($id) {
+            return self::$carpoolMatchRepository->getCarpoolMatchById($id);
+        }
+        public static function getCarpoolMatchsByCarpoolOfferId($carpoolOfferId) {
+            return self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferId($carpoolOfferId);
+        }
+        public static function getCarpoolMatchsByCarpoolRequestId($carpoolRequestId) {
+            return self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolRequestId($carpoolRequestId);
+        }
+        public static function getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($carpoolOfferId, $carpoolRequestId) {
+            return self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($carpoolOfferId, $carpoolRequestId);
+        }
     }
 ?>

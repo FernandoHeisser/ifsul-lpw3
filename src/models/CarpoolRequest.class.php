@@ -1,4 +1,6 @@
 <?php
+    include_once("interfaces/ICarpoolRequest.php");
+
     class CarpoolRequest implements ICarpoolRequest {
         private $id;
         private $userId;

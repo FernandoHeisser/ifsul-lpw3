@@ -1,4 +1,6 @@
 <?php
+    include_once("interfaces/IUser.php");
+    
     class User implements IUser {
         private $id;
         private $email;

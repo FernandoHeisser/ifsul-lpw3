@@ -3,17 +3,30 @@
 
     class CarpoolRequestController {
 
-        private $carpoolRequestRepository;
+        private static $carpoolRequestRepository;
 
         public function __construct() {
-            
-            $this->carpoolRequestRepository = new CarpoolRequestRepository();
-            
+            self::$carpoolRequestRepository = new CarpoolRequestRepository();
         }
 
-        #echo($carpoolRequestRepository->getCarpoolRequests());
-        #echo($carpoolRequestRepository->getCarpoolRequestById(1));
-        #echo($carpoolRequestRepository->getCarpoolRequestByUserId(2));
-        #echo($carpoolRequestRepository->getCarpoolRequestFromOtherUsers(2));
+        public static function createCarpoolRequest(CarpoolRequest $carpoolRequest) {
+            return self::$carpoolRequestRepository->createCarpoolRequest($carpoolRequest);
+        }
+
+        public static function getCarpoolRequests() {
+            return self::$carpoolRequestRepository->getCarpoolRequests();
+        }
+
+        public static function getCarpoolRequestById($id) {
+            return self::$carpoolRequestRepository->getCarpoolRequestById($id);
+        }
+
+        public static function getCarpoolRequestByUserId($userId) {
+            return self::$carpoolRequestRepository->getCarpoolRequestsByUserId($userId);
+        }
+
+        public static function getCarpoolRequestFromOtherUsers($userId) {
+            return self::$carpoolRequestRepository->getCarpoolRequestsFromOtherUsers($userId);
+        }
     }
 ?>

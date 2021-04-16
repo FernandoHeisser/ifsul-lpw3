@@ -3,17 +3,30 @@
 
     class CarpoolOfferController {
 
-        private $carpoolOfferRepository;
+        private static $carpoolOfferRepository;
 
         public function __construct() {
-            
-            $this->carpoolOfferRepository = new CarpoolOfferRepository();
-            
+            self::$carpoolOfferRepository = new CarpoolOfferRepository();
         }
 
-        #echo($carpoolOfferRepository->getCarpoolOffers());
-        #echo($carpoolOfferRepository->getCarpoolOfferById(4));
-        #echo($carpoolOfferRepository->getCarpoolOffersByUserId(1));
-        #echo($carpoolOfferRepository->getCarpoolOffersFromOtherUsers(1));
+        public static function createCarpoolRequest(CarpoolOffer $carpoolOffer) {
+            return self::$carpoolOfferRepository->createCarpoolOffer($carpoolOffer);
+        }
+
+        public static function getCarpoolRequests() {
+            return self::$carpoolOfferRepository->getCarpoolOffers();
+        }
+
+        public static function getCarpoolRequestById($id) {
+            return self::$carpoolOfferRepository->getCarpoolOfferById($id);
+        }
+
+        public static function getCarpoolRequestByUserId($userId) {
+            return self::$carpoolOfferRepository->getCarpoolOffersByUserId($userId);
+        }
+        
+        public static function getCarpoolRequestFromOtherUsers($userId) {
+            return self::$carpoolOfferRepository->getCarpoolOffersFromOtherUsers($userId);
+        }
     }
 ?>
