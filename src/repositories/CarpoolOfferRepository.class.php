@@ -1,4 +1,7 @@
 <?php
+    include_once("database/connection/connection.php");
+    include_once("models/CarpoolOffer.class.php");
+
     class CarpoolOfferRepository {
         private $conn;
         private $tableName = "carpools_offered";
@@ -9,22 +12,22 @@
             $this->conn = $database->getConnection();
         }
 
-        public function createCarpoolOffer(CarpoolOffer $carpoolOffer) {
-            try { 
-                $query = "INSERT INTO {$this->tableName} (
-                    user_id,
-                    phone,
-                    from_city,
-                    from_neighborhood,
-                    from_street,
-                    to_city,
-                    to_neighborhood,
-                    to_street,
-                    start_date,
-                    end_date,
-                    available_vacancies,
-                    canceled,
-                    done)
+        public function createCarpoolOffer($carpoolOfferArray) {
+            try {
+                $carpoolOffer = new CarpoolOffer(
+                    $carpoolOfferArray['user_id'], 
+                    $carpoolOfferArray['phone'], 
+                    $carpoolOfferArray['from_city'], 
+                    $carpoolOfferArray['from_neighborhood'], 
+                    $carpoolOfferArray['from_street'], 
+                    $carpoolOfferArray['to_city'], 
+                    $carpoolOfferArray['to_neighborhood'], 
+                    $carpoolOfferArray['to_street'], 
+                    $carpoolOfferArray['start_date'], 
+                    $carpoolOfferArray['end_date'],
+                    $carpoolOfferArray['available_vacancies']);
+
+                $query = "INSERT INTO {$this->tableName} (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, available_vacancies, canceled, done)
                     VALUES ( 
                     {$carpoolOffer->getUserId()},
                     '{$carpoolOffer->getPhone()}',

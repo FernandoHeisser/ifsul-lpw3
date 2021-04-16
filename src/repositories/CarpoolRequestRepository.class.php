@@ -1,4 +1,7 @@
 <?php
+    include_once("database/connection/connection.php");
+    include_once("models/CarpoolRequest.class.php");
+
     class CarpoolRequestRepository {
         private $conn;
         private $tableName = "carpools_requested";
@@ -9,21 +12,21 @@
             $this->conn = $database->getConnection();
         }
 
-        public function createCarpoolRequest(CarpoolRequest $carpoolRequest) {
-            try { 
-                $query = "INSERT INTO {$this->tableName} (
-                    user_id,
-                    phone,
-                    from_city,
-                    from_neighborhood,
-                    from_street,
-                    to_city,
-                    to_neighborhood,
-                    to_street,
-                    start_date,
-                    end_date,
-                    canceled,
-                    done)
+        public function createCarpoolRequest($carpoolRequestArray) {
+            try {
+                $carpoolRequest = new CarpoolRequest(
+                    $carpoolRequestArray['user_id'], 
+                    $carpoolRequestArray['phone'], 
+                    $carpoolRequestArray['from_city'], 
+                    $carpoolRequestArray['from_neighborhood'], 
+                    $carpoolRequestArray['from_street'], 
+                    $carpoolRequestArray['to_city'], 
+                    $carpoolRequestArray['to_neighborhood'], 
+                    $carpoolRequestArray['to_street'], 
+                    $carpoolRequestArray['start_date'], 
+                    $carpoolRequestArray['end_date']);
+
+                $query = "INSERT INTO {$this->tableName} (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, canceled, done)
                     VALUES ( 
                     {$carpoolRequest->getUserId()},
                     '{$carpoolRequest->getPhone()}',

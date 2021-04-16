@@ -1,4 +1,7 @@
 <?php
+    include_once("database/connection/connection.php");
+    include_once("models/CarpoolMatch.class.php");
+
     class CarpoolMatchRepository {
         private $conn;
         private $tableName = "carpool_match";
@@ -9,13 +12,11 @@
             $this->conn = $database->getConnection();
         }
 
-        public function createCarpoolMatch(CarpoolMatch $carpoolMatch) {
+        public function createCarpoolMatch($carpoolMatchArray) {
             try { 
-                $query = "INSERT INTO {$this->tableName} (
-                    carpool_request_id,
-                    carpool_offer_id,
-                    accepted,
-                    canceled)
+                $carpoolMatch = new CarpoolMatch($carpoolMatchArray['carpool_request_id'], $carpoolMatchArray['carpool_offer_id']);
+
+                $query = "INSERT INTO {$this->tableName} (carpool_request_id, carpool_offer_id, accepted, canceled)
                     VALUES ( 
                     {$carpoolMatch->getCarpoolRequestId()},
                     {$carpoolMatch->getCarpoolOfferId()},
