@@ -124,9 +124,34 @@
             
                     self::$response = self::$carpoolMatchController::getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($request->params[0], $request->params[1]);
                     break;
+
+                case 'api/cancel/request/:id':
+            
+                    self::$response = json_encode($request);
+                    break;
+
+                case 'api/cancel/offer/:id':
+            
+                    self::$response = json_encode($request);
+                    break;
+
+                case 'api/finish/match/:id':
+            
+                    self::$response = json_encode($request);
+                    break;
+
+                case 'api/vacancy/add/:id':
+            
+                    self::$response = json_encode($request);
+                    break;
+
+                case 'api/vacancy/remove/:id':
+            
+                    self::$response = json_encode($request);
+                    break;
                 
                 default:
-                    self::$response = $request->message;
+                    self::$response = json_encode($request);
                     break;
             }
         }

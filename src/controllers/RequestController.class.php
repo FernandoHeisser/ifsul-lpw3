@@ -355,6 +355,177 @@
                             }
                         }
 
+                    } elseif(!empty($array) && $array[0] == 'cancel') {
+
+                        self::$url .= array_shift($array);
+                        self::$url .= '/';
+
+                        if(empty($array) || $array[0] == '') {
+
+                            self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+
+                        } else {
+
+                            if($array[0] == 'request') {
+
+                                self::$url .= array_shift($array);
+                                self::$url .= '/';
+
+                                if(!empty($array) && is_numeric($array[0])) {
+
+                                    $param = array_shift($array);
+                                    self::$url .= ':id';
+
+                                    if(empty($array) || $array[0] == '') {
+
+                                        self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'param'=>$param, 'method'=>'PUT'), JSON_UNESCAPED_SLASHES);
+
+                                    } else {
+
+                                        self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                    }
+
+                                } else {
+                                    
+                                    self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                }
+
+                            } elseif ($array[0] == 'offer') {
+
+                                self::$url .= array_shift($array);
+                                self::$url .= '/';
+
+                                if(!empty($array) && is_numeric($array[0])) {
+
+                                    $param = array_shift($array);
+                                    self::$url .= ':id';
+
+                                    if(empty($array) || $array[0] == '') {
+
+                                        self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'param'=>$param, 'method'=>'PUT'), JSON_UNESCAPED_SLASHES);
+
+                                    } else {
+
+                                        self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                    }
+
+                                } else {
+                                    
+                                    self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                }
+
+                            } else {
+
+                                self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                            }
+                        }
+
+                    } elseif(!empty($array) && $array[0] == 'finish') {
+
+                        self::$url .= array_shift($array);
+                        self::$url .= '/';
+
+                        if(empty($array) || $array[0] == '') {
+
+                            self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+
+                        } else {
+
+                            if($array[0] == 'match') {
+
+                                self::$url .= array_shift($array);
+                                self::$url .= '/';
+
+                                if(!empty($array) && is_numeric($array[0])) {
+
+                                    $param = array_shift($array);
+                                    self::$url .= ':id';
+
+                                    if(empty($array) || $array[0] == '') {
+
+                                        self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'param'=>$param, 'method'=>'PUT'), JSON_UNESCAPED_SLASHES);
+
+                                    } else {
+
+                                        self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                    }
+
+                                } else {
+                                    
+                                    self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                }
+
+                            } else {
+
+                                self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                            }
+                        }
+
+                    } elseif(!empty($array) && $array[0] == 'vacancy') {
+
+                        self::$url .= array_shift($array);
+                        self::$url .= '/';
+
+                        if(empty($array) || $array[0] == '') {
+
+                            self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+
+                        } else {
+
+                            if($array[0] == 'add') {
+
+                                self::$url .= array_shift($array);
+                                self::$url .= '/';
+
+                                if(!empty($array) && is_numeric($array[0])) {
+
+                                    $param = array_shift($array);
+                                    self::$url .= ':id';
+
+                                    if(empty($array) || $array[0] == '') {
+
+                                        self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'param'=>$param, 'method'=>'PUT'), JSON_UNESCAPED_SLASHES);
+
+                                    } else {
+
+                                        self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                    }
+
+                                } else {
+                                    
+                                    self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                }
+
+                            } elseif($array[0] == 'remove') {
+
+                                self::$url .= array_shift($array);
+                                self::$url .= '/';
+
+                                if(!empty($array) && is_numeric($array[0])) {
+
+                                    $param = array_shift($array);
+                                    self::$url .= ':id';
+
+                                    if(empty($array) || $array[0] == '') {
+
+                                        self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'param'=>$param, 'method'=>'PUT'), JSON_UNESCAPED_SLASHES);
+
+                                    } else {
+
+                                        self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                    }
+
+                                } else {
+                                    
+                                    self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                }
+
+                            } else {
+
+                                self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                            }
+                        }
+
                     } else {
 
                         self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
