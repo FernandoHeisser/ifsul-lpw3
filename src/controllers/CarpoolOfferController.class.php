@@ -45,5 +45,17 @@
         public static function getCarpoolOffersFromOtherUsers($userId) {
             return self::$carpoolOfferRepository->getCarpoolOffersFromOtherUsers($userId);
         }
+
+        public static function cancelCarpoolOffer($userId) {
+            return "cancelCarpoolOffer({$userId})";
+        }
+
+        public static function addCarpoolRequestVacancy($userId) {
+            return "addCarpoolRequestVacancy({$userId})";
+        }
+
+        public static function removeCarpoolRequestVacancy($userId) {
+            return "removeCarpoolRequestVacancy({$userId})";
+        }
     }
 ?>

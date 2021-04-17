@@ -127,27 +127,22 @@
 
                 case 'api/cancel/request/:id':
             
-                    self::$response = json_encode($request);
+                    self::$response = self::$carpoolRequestController::cancelCarpoolRequest($request->param);
                     break;
 
                 case 'api/cancel/offer/:id':
             
-                    self::$response = json_encode($request);
-                    break;
-
-                case 'api/finish/match/:id':
-            
-                    self::$response = json_encode($request);
+                    self::$response = self::$carpoolOfferController::cancelCarpoolOffer($request->param);
                     break;
 
                 case 'api/vacancy/add/:id':
             
-                    self::$response = json_encode($request);
+                    self::$response = self::$carpoolOfferController::addCarpoolRequestVacancy($request->param);
                     break;
 
                 case 'api/vacancy/remove/:id':
             
-                    self::$response = json_encode($request);
+                    self::$response = self::$carpoolOfferController::removeCarpoolRequestVacancy($request->param);
                     break;
                 
                 default:

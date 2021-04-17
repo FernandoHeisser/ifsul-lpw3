@@ -45,5 +45,9 @@
         public static function getCarpoolRequestFromOtherUsers($userId) {
             return self::$carpoolRequestRepository->getCarpoolRequestsFromOtherUsers($userId);
         }
+
+        public static function cancelCarpoolRequest($userId) {
+            return "cancelCarpoolRequest({$userId})";
+        }
     }
 ?>
