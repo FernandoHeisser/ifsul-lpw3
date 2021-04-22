@@ -42,5 +42,9 @@
         public static function getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($carpoolOfferId, $carpoolRequestId) {
             return self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($carpoolOfferId, $carpoolRequestId);
         }
+
+        public static function acceptCarpoolMatch($carpoolOfferId, $carpoolRequestId) {
+            return self::$carpoolMatchRepository->acceptCarpoolMatch($carpoolOfferId, $carpoolRequestId);
+        }
     }
 ?>

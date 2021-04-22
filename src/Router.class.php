@@ -125,6 +125,11 @@
                     self::$response = self::$carpoolMatchController::getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($request->params[0], $request->params[1]);
                     break;
 
+                case 'api/carpool/match/accept/offer/:id/request/:id':
+        
+                    self::$response = self::$carpoolMatchController::acceptCarpoolMatch($request->params[0], $request->params[1]);
+                    break;
+
                 case 'api/cancel/request/:id':
             
                     self::$response = self::$carpoolRequestController::cancelCarpoolRequest($request->param);
@@ -137,12 +142,12 @@
 
                 case 'api/vacancy/add/:id':
             
-                    self::$response = self::$carpoolOfferController::addCarpoolRequestVacancy($request->param);
+                    self::$response = self::$carpoolOfferController::addCarpoolOfferVacancy($request->param);
                     break;
 
                 case 'api/vacancy/remove/:id':
             
-                    self::$response = self::$carpoolOfferController::removeCarpoolRequestVacancy($request->param);
+                    self::$response = self::$carpoolOfferController::removeCarpoolOfferVacancy($request->param);
                     break;
                 
                 default:

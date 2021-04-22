@@ -97,5 +97,35 @@
                 echo "Exception: {$e->getMessage()}";
             }
         }
+
+        public function acceptCarpoolMatch($carpoolOfferId, $carpoolRequestId) {
+            try { 
+                $query = "UPDATE {$this->tableName} SET accepted = 1 WHERE carpool_offer_id = {$carpoolOfferId} AND carpool_request_id = {$carpoolRequestId}";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return true;
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
+
+        public function cancelCarpoolMatch($id) {
+            try { 
+                $query = "UPDATE {$this->tableName} SET canceled = 1 WHERE id = {$id}";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return true;
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
     }
 ?>

@@ -344,6 +344,52 @@
                                         self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
                                     }
 
+                                } elseif($array[0] == 'accept') {
+
+                                    self::$url .= array_shift($array);
+                                    self::$url .= '/';
+
+                                    if($array[0] == 'offer') {
+
+                                        self::$url .= array_shift($array);
+                                        self::$url .= '/';
+
+                                        if(!empty($array) && is_numeric($array[0])) {
+
+                                            $param = array_shift($array);
+                                            self::$url .= ':id/';
+
+                                            if(!empty($array) && $array[0] == 'request') {
+
+                                                self::$url .= array_shift($array);
+                                                self::$url .= '/';
+
+                                                if(!empty($array) && is_numeric($array[0])) {
+                                                    
+                                                    $param2 = array_shift($array);
+                                                    self::$url .= ':id';
+                                                    self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'params'=>[$param, $param2], 'method'=>'GET'), JSON_UNESCAPED_SLASHES);
+
+                                                } else {
+
+                                                    self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                                }
+
+                                            } else {
+
+                                                self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                            }
+
+                                        } else {
+
+                                            self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                        }
+
+                                    } else {
+
+                                        self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
+                                    }
+
                                 } else {
 
                                     self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);

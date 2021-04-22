@@ -1,12 +1,18 @@
 <?php
     include_once("repositories/CarpoolRequestRepository.class.php");
+    include_once("repositories/CarpoolOfferRepository.class.php");
+    include_once("repositories/CarpoolMatchRepository.class.php");
 
     class CarpoolRequestController {
 
         private static $carpoolRequestRepository;
+        private static $carpoolOfferRepository;
+        private static $carpoolMatchRepository;
 
         public function __construct() {
             self::$carpoolRequestRepository = new CarpoolRequestRepository();
+            self::$carpoolOfferRepository = new CarpoolOfferRepository();
+            self::$carpoolMatchRepository = new CarpoolMatchRepository();
         }
 
         public static function createCarpoolRequest($carpoolRequest) {
@@ -46,8 +52,18 @@
             return self::$carpoolRequestRepository->getCarpoolRequestsFromOtherUsers($userId);
         }
 
-        public static function cancelCarpoolRequest($userId) {
-            return "cancelCarpoolRequest({$userId})";
+        public static function cancelCarpoolRequest($id) {
+            
+            $status = self::$carpoolOfferRepository->cancelCarpoolOffer($id);
+
+            $match = json_decode(self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolRequestId($id));
+
+            if(is_numeric($match[0]->id)) {
+                self::$carpoolOfferRepository->removeCarpoolOfferVacancy($match[0]->carpool_offer_id);
+                $status = self::$carpoolMatchRepository->cancelCarpoolMatch($match[0]->id);
+            }
+
+            return $status;
         }
     }
 ?>

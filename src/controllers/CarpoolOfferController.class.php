@@ -1,12 +1,15 @@
 <?php
     include_once("repositories/CarpoolOfferRepository.class.php");
+    include_once("repositories/CarpoolMatchRepository.class.php");
 
     class CarpoolOfferController {
 
         private static $carpoolOfferRepository;
+        private static $carpoolMatchRepository;
 
         public function __construct() {
             self::$carpoolOfferRepository = new CarpoolOfferRepository();
+            self::$carpoolMatchRepository = new CarpoolMatchRepository();
         }
 
         public static function createCarpoolOffer($carpoolOffer) {
@@ -46,16 +49,24 @@
             return self::$carpoolOfferRepository->getCarpoolOffersFromOtherUsers($userId);
         }
 
-        public static function cancelCarpoolOffer($userId) {
-            return "cancelCarpoolOffer({$userId})";
+        public static function cancelCarpoolOffer($id) {
+
+            $status = self::$carpoolOfferRepository->cancelCarpoolOffer($id);
+            $match = json_decode(self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferId($id));
+
+            if(is_numeric($match[0]->id)) {
+                $status = self::$carpoolMatchRepository->cancelCarpoolMatch($match[0]->id);
+            }
+
+            return $status;
         }
 
-        public static function addCarpoolRequestVacancy($userId) {
-            return "addCarpoolRequestVacancy({$userId})";
+        public static function addCarpoolOfferVacancy($id) {
+            return self::$carpoolOfferRepository->addCarpoolOfferVacancy($id);
         }
 
-        public static function removeCarpoolRequestVacancy($userId) {
-            return "removeCarpoolRequestVacancy({$userId})";
+        public static function removeCarpoolOfferVacancy($id) {
+            return self::$carpoolOfferRepository->removeCarpoolOfferVacancy($id);
         }
     }
 ?>

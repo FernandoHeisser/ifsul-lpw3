@@ -117,5 +117,50 @@
                 echo "Exception: {$e->getMessage()}";
             }
         }
+
+        public function addCarpoolOfferVacancy($id) {
+            try { 
+                $query = "UPDATE {$this->tableName} SET available_vacancies = available_vacancies + 1 WHERE id = {$id}";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return true;
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
+
+        public function removeCarpoolOfferVacancy($id) {
+            try { 
+                $query = "UPDATE {$this->tableName} SET available_vacancies = available_vacancies - 1 WHERE id = {$id} AND available_vacancies > 0";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return true;
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
+
+        public function cancelCarpoolOffer($id) {
+            try { 
+                $query = "UPDATE {$this->tableName} SET canceled = 1 WHERE id = {$id}";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return true;
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
     }
 ?>
