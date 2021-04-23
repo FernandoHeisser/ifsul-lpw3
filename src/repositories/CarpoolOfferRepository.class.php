@@ -27,7 +27,7 @@
                     $carpoolOfferArray['end_date'],
                     $carpoolOfferArray['available_vacancies']);
 
-                $query = "INSERT INTO {$this->tableName} (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, available_vacancies, canceled, done)
+                $query = "INSERT INTO {$this->tableName} (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, available_vacancies, canceled)
                     VALUES ( 
                     {$carpoolOffer->getUserId()},
                     '{$carpoolOffer->getPhone()}',
@@ -40,7 +40,6 @@
                     '{$carpoolOffer->getStartDate()}',
                     '{$carpoolOffer->getEndDate()}',
                     '{$carpoolOffer->getAvailableVacancies()}',
-                    0,
                     0)";
 
                 $stmt = $this->conn->prepare($query);

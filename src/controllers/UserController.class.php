@@ -13,13 +13,10 @@
             if(!is_object($user))
                 return json_encode(array('status'=>'400', 'message'=>'Bad Request'));
                 
-            if(isset($user->email) && isset($user->name) && isset($user->cpf) 
-            && isset($user->password) && isset($user->phone) && isset($user->city) 
-            && isset($user->neighborhood) && isset($user->street) && isset($user->facebook) 
-            && isset($user->instagram) && isset($user->twitter) && isset($user->photo)){
+            if(isset($user->email) && isset($user->name) && isset($user->password)){
                 
                 $user = get_object_vars($user);   
-                if(count($user) != 12) {
+                if(count($user) != 3) {
                     return json_encode(array('status'=>'400', 'message'=>'Bad Request'));
                 } else {
                     return self::$userRepository->createUser($user);

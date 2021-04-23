@@ -14,9 +14,9 @@
 
         public function createUser($userArray) {
             try {
-                $user = new User($userArray['email'], $userArray['name'], $userArray['cpf'], $userArray['password'], $userArray['phone']);
+                $user = new User($userArray['email'], $userArray['name'], $userArray['password']);
                 
-                $query = "INSERT INTO {$this->tableName} (email, name, cpf, password, phone, city, neighborhood, street, facebook, instagram, twitter, photo)
+                $query = "INSERT INTO {$this->tableName} (email, name, password)
                     VALUES ( 
                     '{$user->getEmail()}',
                     '{$user->getName()}',
