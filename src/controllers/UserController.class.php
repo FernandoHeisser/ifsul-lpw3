@@ -38,5 +38,12 @@
         public static function getUserById($id) {
             return self::$userRepository->getUserById($id);
         }
+
+        public static function login($body) {
+            if(isset($body->email) && isset($body->password))
+                return self::$userRepository->login($body->email, $body->password);
+            else
+                return json_encode(array('status'=>'400', 'message'=>'Bad Request'));
+        }
     }
 ?>

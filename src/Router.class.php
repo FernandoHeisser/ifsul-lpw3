@@ -35,6 +35,11 @@
 
             switch ($request->message) {
         
+                case 'api/login/':
+        
+                    self::$response = self::$userController::login($request->body);
+                    break;
+                
                 case 'api/user/':
         
                     self::$response = self::$userController::createUser($request->body);

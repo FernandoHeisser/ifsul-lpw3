@@ -90,5 +90,21 @@
                 echo "Exception: {$e->getMessage()}";
             }
         }
+
+        public function login($email, $password) {
+            try {
+                $query = "SELECT * FROM {$this->tableName} WHERE email = '{$email}' AND password = '{$password}' LIMIT 1";
+
+                $statement = $this->conn->prepare($query);
+                $statement->execute();
+
+                $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+                return json_encode($user);
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
     }
 ?>

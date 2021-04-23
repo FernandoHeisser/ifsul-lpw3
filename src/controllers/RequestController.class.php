@@ -44,7 +44,7 @@
 
                             } else {
                                 
-                                self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'));
+                                self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
                             }
                         }
 
@@ -529,6 +529,20 @@
 
                                 self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
                             }
+                        }
+
+                    } elseif(!empty($array) && $array[0] == 'login') {
+
+                        self::$url .= array_shift($array);
+                        self::$url .= '/';
+
+                        if(empty($array) || $array[0] == '') {
+
+                            self::$request = json_encode(array('status'=>'200', 'message'=>self::$url, 'method'=>'GET', 'body'=>self::$body), JSON_UNESCAPED_SLASHES);
+
+                        } else {
+ 
+                            self::$request = json_encode(array('status'=>'400', 'message'=>'Bad Request'), JSON_UNESCAPED_SLASHES);
                         }
 
                     } else {
