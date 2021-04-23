@@ -11,7 +11,6 @@
         private $toStreet;
         private $startDate;
         private $endDate;
-        private $done = false;
         private $canceled = false;
 
         function __construct($userId, $phone, $fromCity, $fromNeighborhood, $fromStreet, $toCity, $toNeighborhood, $toStreet, $startDate, $endDate) {
@@ -60,15 +59,8 @@
         public function getEndDate() {
             return $this->endDate;
         }
-        public function getDone() {
-            return $this->done;
-        }
         public function getCanceled() {
             return $this->canceled;
-        }
-
-        public function setDone() {
-            $this->done = true;
         }
         public function setCanceled() {
             $this->canceled = true;

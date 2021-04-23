@@ -12,11 +12,9 @@
         public function getToStreet();
         public function getStartDate();
         public function getEndDate();
-        public function getDone();
         public function getCanceled();
         public function getAvailableVacancies();
 
-        public function setDone();
         public function setCanceled();
 
         public function addAvailableVacancies();
