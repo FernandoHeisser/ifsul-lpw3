@@ -6,7 +6,7 @@ export default function CarpoolOffers(){
 
     useEffect(() => {
 
-        axios.get(`http://localhost/fernando/server/src/api/carpool/offers/others/${localStorage.getItem('id')}`)
+        axios.get(`http://localhost/fernando/ifsul-lpw3/server/src/api/carpool/offers/others/${localStorage.getItem('id')}`)
         .then(response => {
             setCarpoolOffers(response.data);
         })

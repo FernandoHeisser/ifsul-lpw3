@@ -10,7 +10,7 @@ export default function Login(){
     async function handleLogin(e){
         e.preventDefault();
         try{
-            const response = await axios.post(`http://localhost/fernando/server/src/api/login`, {email: email, password: password});
+            const response = await axios.post(`http://localhost/fernando/ifsul-lpw3/server/src/api/login`, {email: email, password: password});
             
             if(response.data.status === undefined && response.data !== false) {
 

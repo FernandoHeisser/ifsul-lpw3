@@ -11,7 +11,7 @@ export default function CreateCarpoolOffer(){
     async function handleRegister(e){
         e.preventDefault();
         try{
-            const response = await axios.post(`http://localhost/fernando/server/src/api/carpool/offer`, {name: name, email: email, password: password});
+            const response = await axios.post(`http://localhost/fernando/ifsul-lpw3/server/src/api/carpool/offer`, {name: name, email: email, password: password});
             
             if(response.data.status === undefined && response.data !== false) {
 
