@@ -56,6 +56,18 @@
             
             $status = self::$carpoolRequestRepository->cancelCarpoolRequest($id);
 
+            $matches = json_decode(self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolRequestId($id));
+
+            if(!empty($matches)) {
+                array_map(function($match) {
+                    if(is_numeric($match->id)) {
+                        self::$carpoolMatchRepository->cancelCarpoolMatch($match->id);
+                        if(is_numeric($match->carpool_offer_id) && $match->accepted == 1)
+                            self::$carpoolOfferRepository->addCarpoolOfferVacancy($match->carpool_offer_id);
+                    }
+                }, $matches);
+            }
+
             return $status;
         }
     }

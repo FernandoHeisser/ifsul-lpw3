@@ -53,6 +53,15 @@
 
             $status = self::$carpoolOfferRepository->cancelCarpoolOffer($id);
 
+            $matches = json_decode(self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferId($id));
+
+            if(!empty($matches)) {
+                array_map(function($match) {
+                    if(is_numeric($match->id))
+                        self::$carpoolMatchRepository->cancelCarpoolMatch($match->id);
+                }, $matches);
+            }
+
             return $status;
         }
 

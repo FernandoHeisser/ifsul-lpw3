@@ -1,12 +1,15 @@
 <?php
     include_once("repositories/CarpoolMatchRepository.class.php");
+    include_once("repositories/CarpoolOfferRepository.class.php");
 
     class CarpoolMatchController {
 
         private static $carpoolMatchRepository;
+        private static $carpoolOfferRepository;
 
         public function __construct() {
             self::$carpoolMatchRepository = new CarpoolMatchRepository();
+            self::$carpoolOfferRepository = new CarpoolOfferRepository();
         }
 
         public static function createCarpoolMatch($carpoolMatch) {
@@ -44,6 +47,9 @@
         }
 
         public static function acceptCarpoolMatch($carpoolOfferId, $carpoolRequestId) {
+
+            self::$carpoolOfferRepository->removeCarpoolOfferVacancy($carpoolOfferId);
+            
             return self::$carpoolMatchRepository->acceptCarpoolMatch($carpoolOfferId, $carpoolRequestId);
         }
     }
