@@ -36,7 +36,7 @@
 
         public function getCarpoolMatchById($id) {
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} LIMIT 1";
+                $query = "SELECT * FROM {$this->tableName} WHERE id = {$id} AND canceled = 0 LIMIT 1";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
@@ -52,7 +52,7 @@
 
         public function getCarpoolMatchsByCarpoolRequestId($carpoolRequestId) {
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE carpool_request_id = {$carpoolRequestId}";
+                $query = "SELECT * FROM {$this->tableName} WHERE carpool_request_id = {$carpoolRequestId} AND canceled = 0";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
@@ -68,7 +68,7 @@
 
         public function getCarpoolMatchsByCarpoolOfferId($carpoolOfferId) {
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId}";
+                $query = "SELECT * FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId} AND canceled = 0";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
@@ -84,7 +84,7 @@
 
         public function getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId($carpoolOfferId, $carpoolRequestId) {
             try {
-                $query = "SELECT * FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId} AND carpool_request_id = {$carpoolRequestId}";
+                $query = "SELECT * FROM {$this->tableName} WHERE carpool_offer_id = {$carpoolOfferId} AND carpool_request_id = {$carpoolRequestId} AND canceled = 0";
 
                 $statement = $this->conn->prepare($query);
                 $statement->execute();
