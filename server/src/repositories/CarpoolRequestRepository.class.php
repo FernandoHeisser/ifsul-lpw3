@@ -114,5 +114,20 @@
                 echo "Exception: {$e->getMessage()}";
             }
         }
+
+        public function cancelCarpoolRequest($id) {
+            try { 
+                $query = "UPDATE {$this->tableName} SET canceled = 1 WHERE id = {$id}";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->execute();
+
+                return true;
+
+            } catch (Exception $e) {
+                echo "Exception: {$e->getMessage()}";
+            }
+        }
     }
 ?>

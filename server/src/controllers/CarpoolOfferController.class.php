@@ -52,11 +52,6 @@
         public static function cancelCarpoolOffer($id) {
 
             $status = self::$carpoolOfferRepository->cancelCarpoolOffer($id);
-            $match = json_decode(self::$carpoolMatchRepository->getCarpoolMatchsByCarpoolOfferId($id));
-
-            if(is_numeric($match[0]->id)) {
-                $status = self::$carpoolMatchRepository->cancelCarpoolMatch($match[0]->id);
-            }
 
             return $status;
         }
