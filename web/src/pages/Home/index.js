@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../../style.css';
 
 export default function Home(){
+    const history = useHistory();
     return(
         <body>
             <div>
@@ -33,6 +35,9 @@ export default function Home(){
                         <Link to="/create-carpool-request">
                             Criar uma nova solicitação
                         </Link>
+                        <br></br><br></br>
+                        <br></br><br></br>
+                        <button type='button' onClick={()=>{localStorage.clear(); history.push('/');}}>Sair</button>
                     </form>
                 </section>
             </div>
