@@ -6,19 +6,25 @@ export default function MyCarpoolOffers(){
     const [carpoolOffers, setCarpoolOffers] = useState([]);
 
     useEffect(() => {
-
         axios.get(`http://localhost/fernando/ifsul-lpw3/server/src/api/carpool/offers/user/${localStorage.getItem('id')}`)
         .then(response => {
             setCarpoolOffers(response.data);
         })
-
     }, []);
 
     async function handleCancelCarpoolOffer(e) {
-
         await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/cancel/offer/${e}`);
-        window.location.reload();
-            
+        window.location.reload();     
+    }
+
+    async function handleAddVacancy(e) {
+        await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/vacancy/add/${e}`);
+        window.location.reload();   
+    }
+
+    async function handleRemoveVacancy(e) {
+        await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/vacancy/remove/${e}`);
+        window.location.reload();   
     }
 
     return(
@@ -41,6 +47,8 @@ export default function MyCarpoolOffers(){
                                         
                                         <p><strong>Vagas disponíveis:</strong> {carpool.available_vacancies}</p>
 
+                                        <button type='button' onClick={()=>handleAddVacancy(carpool.id)}>Adicionar vaga</button>
+                                        <button type='button' onClick={()=>handleRemoveVacancy(carpool.id)}>Remover vaga</button>
                                         <button type='button' onClick={()=>handleCancelCarpoolOffer(carpool.id)}>Cancelar</button>
                                     </div>
                                 </li>

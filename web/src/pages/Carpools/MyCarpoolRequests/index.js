@@ -6,19 +6,15 @@ export default function MyCarpoolRequest(){
     const [carpoolRequests, setCarpoolRequests] = useState([]);
 
     useEffect(() => {
-
         axios.get(`http://localhost/fernando/ifsul-lpw3/server/src/api/carpool/requests/user/${localStorage.getItem('id')}`)
         .then(response => {
             setCarpoolRequests(response.data);
         })
-
     }, []);
 
     async function handleCancelCarpoolRequest(e) {
-
         await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/cancel/request/${e}`);
-        window.location.reload();
-            
+        window.location.reload();    
     }
 
     return(

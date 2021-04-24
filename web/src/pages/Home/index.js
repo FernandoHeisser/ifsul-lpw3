@@ -31,7 +31,7 @@ export default function Home(){
                         </Link>
                         <br></br><br></br>
                         <Link to="/create-carpool-request">
-                            Criar uma noma solicitação
+                            Criar uma nova solicitação
                         </Link>
                     </form>
                 </section>
