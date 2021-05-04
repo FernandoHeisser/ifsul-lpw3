@@ -13,8 +13,10 @@ export default function MyCarpoolRequest(){
     }, []);
 
     async function handleCancelCarpoolRequest(e) {
-        await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/cancel/request/${e}`);
-        window.location.reload();    
+        if(window.confirm('Você tem certeza que deseja cancelar?')) {
+            await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/cancel/request/${e}`);
+            window.location.reload();
+        }
     }
 
     return(

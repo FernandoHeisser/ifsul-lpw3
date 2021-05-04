@@ -13,8 +13,10 @@ export default function MyCarpoolOffers(){
     }, []);
 
     async function handleCancelCarpoolOffer(e) {
-        await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/cancel/offer/${e}`);
-        window.location.reload();     
+        if(window.confirm('Você tem certeza que deseja cancelar?')) {
+            await axios.put(`http://localhost/fernando/ifsul-lpw3/server/src/api/cancel/offer/${e}`);
+            window.location.reload(); 
+        }
     }
 
     async function handleAddVacancy(e) {
